@@ -41,7 +41,7 @@ class UserCreateForm(UserCreationForm):
         self.fields['username'].widget.attrs['placeholder'] = 'Nome'
         self.fields['email'].widget.attrs['placeholder'] = 'Email'
         self.fields['password1'].widget.attrs['placeholder'] = 'Palavra Passe'
-        self.fields['password2'].widget.attrs['placeholder'] = 'Repita Palavra Passe'
+        self.fields['password2'].widget.attrs['placeholder'] = 'Confirme Palavra Passe'
 
     def save(self, commit=True):
         user = super(UserCreateForm, self).save(commit=False)
