@@ -22,12 +22,17 @@ class Producto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=False, default='')
     sub_categoria = models.ForeignKey(Sub_Categoria, on_delete=models.CASCADE, null=False, default='')
     image = models.ImageField(upload_to='ecommerce/pimg')
-    nome = models.CharField(max_length=100)
-    preco = models.IntegerField()
+    name = models.CharField(max_length=100)
+    price = models.IntegerField()
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.nome
+    
+    @staticmethod
+    def get_products_by_id(ids):
+        return Producto.objects.filter(id__in_=ids)
+
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Email', error_messages={'existe':'Este email ja existe'})
 
