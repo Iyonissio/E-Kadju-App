@@ -27,7 +27,7 @@ class Producto(models.Model):
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.nome
+        return self.name
     
     @staticmethod
     def get_products_by_id(ids):

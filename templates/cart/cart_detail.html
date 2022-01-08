@@ -47,12 +47,29 @@
                             <p class="cart_total_price">{{ value.price|multiply:value.quantity }} MT</p>
                         </td>
                         <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            <a class="cart_quantity_delete" href="{% url 'item_clear' key %}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
-                   
+                    <br>
+                    <a href="{% url 'cart_clear' %}">Esvaziar o Carinho</a>
+                    <br>
                 </tbody>
+                <tfoot>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <hr>
+                        <h4>Valor Total:</h4>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <h3>{{cart_total_amount}} MT</h3>
+                    </td>
+                </tfoot>
             </table>
         </div>
     </div>
