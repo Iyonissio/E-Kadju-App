@@ -1,3 +1,5 @@
+from datetime import datetime
+from distutils.command.upload import upload
 from email import message
 from pyexpat import model
 from django.db import models
@@ -6,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import fields
+import datetime
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=150)
@@ -72,3 +75,37 @@ class Contact_us(models.Model):
 
     def __str__(self):
         return self.name
+
+class Order(models.Model):
+    image = models.ImageField(upload_to='ecommerce/order/image')
+    product = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    quantity = models.CharField(max_length=5)
+    price = models.IntegerField()
+    address = models.TextField()
+    phone = models.CharField(max_length=10)
+    pincode = models.CharField(max_length=10)
+    date = models.DateField(default=datetime.datetime.today)
+
+    def __str__(self):
+        return self.product.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

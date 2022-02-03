@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from app.models import Categoria, Producto
 from django.contrib.auth import authenticate, login
-from app.models import UserCreateForm
+from app.models import UserCreateForm, Contact_us
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 
@@ -92,4 +92,13 @@ def cart_detail(request):
 
 #view contacte-nos
 def Contact_Page(request):
+    if request.method == 'POST':
+        contact = Contact_us(
+            name = request.POST.get('name'),
+            email = request.POST.get('email'),
+            subject = request.POST.get('subject'),
+            message = request.POST.get('message'),
+        )
+        contact.save()
+
     return render (request, 'contact.html')

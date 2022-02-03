@@ -29,4 +29,6 @@ urlpatterns = [
 
     #Pagina de Contacto
     path('contact_us', views.Contact_Page, name='contact_page'),
+
+    #Chekout
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
