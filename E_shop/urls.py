@@ -31,4 +31,5 @@ urlpatterns = [
     path('contact_us', views.Contact_Page, name='contact_page'),
 
     #Chekout
+    path('checkout/', views.Checkout, name='checkout'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

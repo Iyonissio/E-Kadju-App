@@ -1,7 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from app.models import Categoria, Producto
 from django.contrib.auth import authenticate, login
 from app.models import UserCreateForm, Contact_us
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 
@@ -102,3 +104,15 @@ def Contact_Page(request):
         contact.save()
 
     return render (request, 'contact.html')
+
+def Checkout(request):
+    if request.method == 'POST':
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        pincode = request.POST.get('pincode')
+        cart = request.session.get('cart')
+        uid = request.session.get('_auth_user_id')
+        user = User.objects.get(pk = uid)
+
+        print(address, phone, pincode, cart, user)
+    return HttpResponse("Pagina do Checkout")
