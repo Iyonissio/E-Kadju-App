@@ -1,3 +1,5 @@
+from email import message
+from pyexpat import model
 from django.db import models
 
 from django.contrib.auth.forms import UserCreationForm
@@ -60,3 +62,13 @@ class UserCreateForm(UserCreationForm):
             raise forms.ValidationError(self.fields['email'])
             #Melhorar esse eeroo
         return self.cleaned_data['email']
+
+
+class Contact_us(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
