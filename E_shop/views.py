@@ -1,6 +1,7 @@
+from itertools import product
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from app.models import Categoria, Producto
+from app.models import Categoria, Producto, Order
 from django.contrib.auth import authenticate, login
 from app.models import UserCreateForm, Contact_us
 from django.contrib.auth.models import User
@@ -113,6 +114,26 @@ def Checkout(request):
         cart = request.session.get('cart')
         uid = request.session.get('_auth_user_id')
         user = User.objects.get(pk = uid)
+        print(cart)
 
         print(address, phone, pincode, cart, user)
+        for i in cart:
+            a = (int(cart[i]['price']))
+            b = cart[i]['quantity']
+            total = a * b
+
+            order = Order(
+                user = user,
+                product = cart[i]['name'],
+                price = cart[i]['price'],
+                quantity = cart[i]['quantity'],
+                image = cart[i]['image'],
+                address = address,
+                phone = phone,
+                pincode = pincode,
+                total = total,
+            )
+            order.save()
+        request.session['cart'] = {}
+        return redirect("index")
     return HttpResponse("Pagina do Checkout")
