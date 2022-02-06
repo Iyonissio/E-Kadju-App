@@ -1,5 +1,12 @@
 {% extends 'master.html' %}
 {% block body %}
+
+<style>
+.imagem img{
+    width: 200px;
+    height: 200px;
+}
+</style>
 <section id="cart_items">
     <div class="container">
         <div class="breadcrumbs">
@@ -23,7 +30,7 @@
                 <tbody>
                     {% for i in order %}
                     <tr>
-                        <td class="cart_product">
+                        <td class="imagem">
                             <a href=""><img src="{{i.image}}" alt=""></a>
                         </td>
                         <td class="cart_description">
@@ -39,9 +46,6 @@
                         </td>
                         <td class="cart_total">
                             <p class="cart_total_price">{{i.total}}</p>
-                        </td>
-                        <td class="cart_delete">
-                            <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                    {% endfor %}
