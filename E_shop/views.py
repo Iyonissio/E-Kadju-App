@@ -1,4 +1,5 @@
 from itertools import product
+from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from app.models import Categoria, Producto, Order
@@ -137,3 +138,15 @@ def Checkout(request):
         request.session['cart'] = {}
         return redirect("index")
     return HttpResponse("Pagina do Checkout")
+
+
+def Your_Order(request):
+    uid = request.session.get('_auth_user_id')
+    user = User.objects.get(pk = uid)
+    
+    order = Order.objects.filter(user = user)
+    print('----------- ',user, order)
+    context = {
+        'order': order
+    }
+    return render(request, 'order.html', context)

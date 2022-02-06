@@ -32,4 +32,7 @@ urlpatterns = [
 
     #Chekout
     path('checkout/', views.Checkout, name='checkout'),
+
+    #Pedido Pagina
+    path('order/', views.Your_Order, name="order"),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
